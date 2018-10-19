@@ -16,6 +16,7 @@
 
 ```
 git clone https://github.com/zsakvo/yuedu-my716.git
+cd yuedu-my716/
 # 亦可以直接下载源码包而后解压之
 npm i
 ```
