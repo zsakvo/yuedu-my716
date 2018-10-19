@@ -26,9 +26,10 @@ app.get("/book/search", async function(req, res) {
   res.end();
 });
 
-app.get(/^\/book\/(\w.+)$/, async function(req, res) {
-  var bid = req.url.split("/")[2];
-  res.write(await bd(bid));
+app.get("/book/detail", async function(req, res) {
+  var bid = req.query.bid;
+  var intro = req.query.intro;
+  res.write(await bd(bid, intro));
   res.end();
 });
 
