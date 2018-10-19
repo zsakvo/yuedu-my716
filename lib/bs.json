@@ -20,7 +20,7 @@
   "ruleSearchAuthor": "tag.h4.0@text",
   "ruleSearchCoverUrl": "tag.img.0@src",
   "ruleSearchKind": "tag.h4.1@text",
-  "ruleSearchLastChapter": "",
+  "ruleSearchLastChapter": "class.lp.0@text",
   "ruleSearchList": "tag.li",
   "ruleSearchName": "tag.h2.0@text",
   "ruleSearchNoteUrl": "tag.a.0@href",
