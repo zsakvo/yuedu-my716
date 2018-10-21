@@ -46,7 +46,7 @@ app.post("/gbs", function(req, res) {
   var bsu = body.bsu;
   bs.bookSourceName = bsn;
   bs.bookSourceUrl = bsu;
-  bs.ruleSearchUrl = bsu + "/book/search?keyword=searchKey&page=searchPage";
+  bs.ruleSearchUrl = bsu + "/search?keyword=searchKey&page=searchPage";
   res.json(bs);
 });
 
