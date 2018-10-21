@@ -1,10 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-var gs = require("./lib/getSearch");
-var bd = require("./lib/bookDetail");
-var gc = require("./lib/getContent");
+var gc = require("./lib/gc");
 var bs = require("./lib/bs.json");
-var gi = require("./lib/getIP");
+var gco = require("./lib/gco");
 var cheerio = require("cheerio");
 var rp = require("request-promise");
 var ip = require("ip");
@@ -20,22 +18,25 @@ app.use(
 );
 app.use(bodyParser.json());
 
-app.get("/book/search", async function(req, res) {
+app.get("/search", async function(req, res) {
   var keyword = req.query.keyword;
-  res.write(await gs(keyword));
-  res.end();
+  var page = req.query.page;
+  res.location(
+    "http://www.zhuishushenqi.com/search?val=" + keyword + "&page=" + page
+  );
+  res.sendStatus(302);
 });
 
-app.get("/book/detail", async function(req, res) {
-  var bid = req.query.bid;
-  var intro = req.query.intro;
-  res.write(await bd(bid, intro));
+app.get(/^\/comment\/(\w.+)$/, async function(req, res) {
+  var bid = req.url.split("/comment/")[1];
+  res.write(await gco(bid));
   res.end();
 });
 
 app.get(/^\/chapter\/(\w.+)$/, async function(req, res) {
   var url = req.url.split("/chapter/")[1];
-  res.write(await gc(url));
+  var html = await gc(url);
+  res.write(html);
   res.end();
 });
 
@@ -45,7 +46,7 @@ app.post("/gbs", function(req, res) {
   var bsu = body.bsu;
   bs.bookSourceName = bsn;
   bs.bookSourceUrl = bsu;
-  bs.ruleSearchUrl = bsu + "/book/search?keyword=searchKey";
+  bs.ruleSearchUrl = bsu + "/book/search?keyword=searchKey&page=searchPage";
   res.json(bs);
 });
 
