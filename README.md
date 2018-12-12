@@ -1,5 +1,7 @@
 # yuedu-my716
 
+## 新版本阅读已经支持JsonPath，XPath等，并支持运行JavaScript语句，本项目已经无意义存在，就此关闭。
+
 ## 描述
 
 中转追书神器内部源（book.my716.com），为「阅读」提供数据。
